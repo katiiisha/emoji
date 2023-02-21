@@ -4,6 +4,7 @@ import './App.css';
 
 function App() {
   const [data, setData] = useState([])
+  const [filter, setFilter] = useState('');
   const url = 'https://63f4e22355677ef68bc5fb32.mockapi.io/emoji';
   useEffect(() => {
     fetch(url)
@@ -11,11 +12,13 @@ function App() {
       .then((data) => setData(data))
   }, [])
   // console.log(data);
-
+  function filterData() {
+    
+  }
 
   return (
     <>
-      <input type="text" placeholder='Найти свой эмоджи...' />
+      <input type="text" placeholder='Найти свой эмоджи...' onChange={(name) => setFilter(name.target.value) }/>
       {data.map((elem, index) => (
         <div key={index}>
           <div>{elem.symbol}</div>
