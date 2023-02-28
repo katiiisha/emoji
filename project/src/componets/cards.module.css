@@ -1,0 +1,51 @@
+*{
+margin: 0;
+}
+main {
+    background: #EDEEF3;
+ 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 88px;
+}
+.card {
+    border: 1px solid #DEE2E6;
+border-radius: 4px;
+width: 316px;
+height: 184px;
+background: #FFFFFF;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-right: 19px;
+margin-bottom: 22px;
+justify-content: space-evenly;
+}
+.emoji {
+    font-size: 48px;
+    line-height: 48px;
+}
+h3 {
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 17px;
+line-height: 28px;
+
+text-decoration-line: underline;
+
+color: #000000;
+}
+p {
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+text-align: center;
+
+color: #3F444A;
+}
