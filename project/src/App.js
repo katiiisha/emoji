@@ -21,7 +21,17 @@ function App() {
   const handleNameChange = (e) => {
     setText(e.target.value)
   }
-
+ // пагинация 
+  // общее количество страниц
+  const [CardsPerPage] = useState(12)
+  //текущая страница
+  const [CurrentPage, setCurrentPage] = useState(1); 
+// определение индекса первой и последней карточки 
+  const lastCardIndex = CurrentPage * CardsPerPage;
+  const firstCardIndex = lastCardIndex - CardsPerPage; 
+  // получили первые 12 карточек из полученного с сервера массива 
+  const currentCards = data.slice(firstCardIndex, lastCardIndex)
+console.log(currentCards);
   return (
     <>
       
