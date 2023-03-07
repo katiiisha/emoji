@@ -1,23 +1,18 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
 import st from './cards.module.css';
 
-function Cards() {
-    const [data, setData] = useState([])
-  
-  const url = 'https://63f4e22355677ef68bc5fb32.mockapi.io/emoji';
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setData(data))
-  }, [])
-  // console.log(data);
-  function filterData() {
-    
-  }
+function Cards({ data, text}) {
+ 
+
+  const filterCard = data.filter((data) => {
+            return text === '' ? data : data.title.toLowerCase().includes(text)})
+ 
   return (
-      <main>
-          {data.map((elem, index) => (
+    <main>
+      
+      
+      {filterCard.map((elem, index) => (
+            
               <div key={index} className={st.card}>
                   <div className={st.emoji}>{elem.symbol}</div>
           <h3 >{elem.title}</h3>
