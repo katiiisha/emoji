@@ -1,17 +1,13 @@
 import React from 'react'
 import st from './cards.module.css';
 
-function Cards({ data, text}) {
- 
-
-  const filterCard = data.filter((data) => {
-            return text === '' ? data : data.title.toLowerCase().includes(text)})
+function Cards({emojiList}) {
  
   return (
     <main>
       
       
-      {filterCard.map((elem, index) => (
+      {emojiList.map((elem, index) => (
             
               <div key={index} className={st.card}>
                   <div className={st.emoji}>{elem.symbol}</div>

@@ -1,44 +1,56 @@
 
 import React, {useState, useEffect} from 'react';
-
+import axios from 'axios';
 import './App.css';
 
 import Filter from './componets/Filter';
 import Cards from './componets/Cards';
+import Paginate from './componets/Paginate';
 
 function App() {
   // получаем данные с сервера и записываем их в хук
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  // общее количество страниц
+  const [cardsPerPage] = useState(9);
+  //текущая страница
+  const [currentPage, setCurrentPage] = useState(1);
+
+// получаем данные с сервера
   const url = 'https://63f4e22355677ef68bc5fb32.mockapi.io/emoji';
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setData(data))
-  }, [])
+    axios.get(url)
+      .then((response) => {
+        setData(response.data)
+      })
+  }, []);
+// поиск эмоджи
+  const filteredEmoji = data.filter((elem) => {
+    const fullSearch = searchValue.split(" ");
+    return fullSearch.every(
+      (word) =>
+        elem.title.toLowerCase().includes(word.toLowerCase())
+    );
+  });
 
-  //данный получаенные с инпута 
-  const [text, setText] = useState('')
-  const handleNameChange = (e) => {
-    setText(e.target.value)
-  }
- // пагинация 
-  // общее количество страниц
-  const [CardsPerPage] = useState(12)
-  //текущая страница
-  const [CurrentPage, setCurrentPage] = useState(1); 
-// определение индекса первой и последней карточки 
-  const lastCardIndex = CurrentPage * CardsPerPage;
-  const firstCardIndex = lastCardIndex - CardsPerPage; 
+  // определение индекса первой и последней карточки 
+  const lastCardIndex = currentPage * cardsPerPage;
+  const firstCardIndex = lastCardIndex - cardsPerPage;
   // получили первые 12 карточек из полученного с сервера массива 
-  const currentCards = data.slice(firstCardIndex, lastCardIndex)
-console.log(currentCards);
+  const currentCards = Math.ceil(data.length / cardsPerPage);
+// вырезаем из массива нужное количество карточек
+  const emojiList = filteredEmoji.slice(
+    firstCardIndex,
+    lastCardIndex
+  );
+
   return (
     <>
       
-      <Filter handleNameChange={handleNameChange} />
+      <Filter setCurrentPage={setCurrentPage} setSearchValue={setSearchValue} />
     
-      <Cards data={data} text={text}  />
-
+      <Cards emojiList={emojiList} />
+      <Paginate setCurrentPage={setCurrentPage} currentPage={currentPage} cardsPerPage={cardsPerPage} currentCards={currentCards} /> 
     </>
   );
 }
