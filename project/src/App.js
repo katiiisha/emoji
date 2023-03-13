@@ -2,7 +2,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
-
 import Filter from './componets/Filter';
 import Cards from './componets/Cards';
 import Paginate from './componets/Paginate';
@@ -15,7 +14,7 @@ function App() {
   const [cardsPerPage] = useState(9);
   //текущая страница
   const [currentPage, setCurrentPage] = useState(1);
-
+  console.log(currentPage);
 // получаем данные с сервера
   const url = 'https://63f4e22355677ef68bc5fb32.mockapi.io/emoji';
   useEffect(() => {

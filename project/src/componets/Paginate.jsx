@@ -1,5 +1,6 @@
 import React from 'react'
-
+import s from './paginate.module.css';
+import classNames from "classnames"
 function Paginate({setCurrentPage, currentPage, currentCards}) {
     
 
@@ -24,11 +25,14 @@ function Paginate({setCurrentPage, currentPage, currentCards}) {
     startPage = currentPage - 3;
     endPage = currentPage + 2;
   }
+  //  let cx = classNames.bind(s)
+ 
 
   return (
-      <div>
+    <div className={s.paginate}>
         {currentPage === 1 ? (
-          <button
+        <button
+          className={classNames(s.btn_first, s.btn_paginate) }
             disabled={true}
             onClick={() => setCurrentPage(pageNumbers[pageNumbers[0] - 1])}
           >
@@ -36,21 +40,28 @@ function Paginate({setCurrentPage, currentPage, currentCards}) {
           </button>
         ) : (
           <button
+            className={classNames(s.btn_paginate, s.hover, s.btn_first) }
             onClick={() => setCurrentPage(pageNumbers[pageNumbers[0] - 1])}
           >
             First
           </button>
           )}
-          {pageNumbers.slice(startPage, endPage).map((number) => (
-          <button
-            key={number}
-            onClick={() => setCurrentPage(number)}
+      {pageNumbers.slice(startPage, endPage).map((number) => (
+        
+        <button
+          
+          className={classNames(s.btn_paginate, {[s.active] : number === currentPage })}
+              
+              key={number}
+              onClick={() => setCurrentPage(number)}
+              
           >
             {number}
           </button>
           ))}
           {currentPage === currentCards ? (
-          <button
+        <button
+          className={classNames(s.btn_paginate, s.btn_last)}
             disabled={true}
             onClick={() => setCurrentPage(pageNumbers.length)}
           >
@@ -58,6 +69,7 @@ function Paginate({setCurrentPage, currentPage, currentCards}) {
           </button>
         ) : (
           <button
+            className={classNames(s.btn_paginate, s.hover, s.btn_last) }
             onClick={() => setCurrentPage(pageNumbers.length)}
           >
             Last

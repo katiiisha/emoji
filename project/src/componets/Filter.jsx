@@ -6,7 +6,7 @@ function Filter({setCurrentPage, setSearchValue}) {
       <header>
           <h1>Emoji Finder</h1>
           <h2>Find emoji by keywords</h2>
-      <input type="text" placeholder='Найти свой эмоджи...' className={s.inp_filter} onChange={({ target }) => {
+      <input type="text" placeholder='Find your emoji...' className={s.inp_filter} onChange={({ target }) => {
           setCurrentPage(1);
           setSearchValue(target.value);
         }} />
