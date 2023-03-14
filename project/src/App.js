@@ -10,11 +10,11 @@ function App() {
   // получаем данные с сервера и записываем их в хук
   const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  // общее количество страниц
-  const [cardsPerPage] = useState(9);
+  // количество отображемых карточек на странице 
+  const [cardsPerPage, setcardsPerPage] = useState(9);
   //текущая страница
   const [currentPage, setCurrentPage] = useState(1);
-  console.log(currentPage);
+  
 // получаем данные с сервера
   const url = 'https://63f4e22355677ef68bc5fb32.mockapi.io/emoji';
   useEffect(() => {
@@ -42,7 +42,15 @@ function App() {
     firstCardIndex,
     lastCardIndex
   );
-
+  
+  let width = document.body.clientWidth;
+  window.onresize = (event) => {
+    width = document.body.clientWidth
+    
+    width >= 645 && width <1024 ? setcardsPerPage(8) : setcardsPerPage(9)
+    
+  };
+ 
   return (
     <>
       

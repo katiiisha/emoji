@@ -1,3 +1,11 @@
 body{
     background: #EDEEF3;
+    overflow-x: hidden;
+}
+@media (max-width: 420px) {
+    body {
+        overflow-x: hidden;
+        
+    }
+
 }

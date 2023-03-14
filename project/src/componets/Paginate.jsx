@@ -25,7 +25,7 @@ function Paginate({setCurrentPage, currentPage, currentCards}) {
     startPage = currentPage - 3;
     endPage = currentPage + 2;
   }
-  //  let cx = classNames.bind(s)
+  
  
 
   return (
